@@ -12,12 +12,17 @@ import java.util.regex.Pattern;
 
 public class SolutionApp {
 	
-	private static Map<Character, Integer> mapCountCharacter = new LinkedHashMap<>();
-	private static List<Character> characters = new ArrayList<>();
-	private static List<Character> vogais = new ArrayList<>();
+	private static Map<Character, Integer> mapCountCharacter;
+	private static List<Character> characters;
+	private static List<Character> vogais;
+	private static Scanner scanner;
 	
 	public static char firstChar(Stream stream) {
-				
+		
+		mapCountCharacter = new LinkedHashMap<>();
+		characters = new ArrayList<>();
+		vogais = new ArrayList<>();
+		
 		while (stream.hasNext()) {									
 			
 			char charCurrent = stream.getNext();			
@@ -85,7 +90,10 @@ public class SolutionApp {
 		System.out.println("**********************************************************************");		
 		System.out.println();
 		System.out.print("Digite uma palavra: ");
-		Stream stream = new StreamImpl(new Scanner(System.in));
+		
+		scanner = new Scanner(System.in);
+		String palavra = scanner.nextLine();
+		Stream stream = new StreamImpl(palavra);
 		
 		try {
 			char firstChar = firstChar(stream);

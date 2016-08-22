@@ -2,8 +2,6 @@ package br.com.avaliacao.checkout;
 
 import static br.com.avaliacao.checkout.constants.Constants.VOGAL_NAO_ENCONTRADA;
 
-import java.util.Scanner;
-
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -13,36 +11,34 @@ public class SolutionAppTest {
 		
 	@Test
 	public void testFirstChar01() {
-		char first = SolutionApp.firstChar(createStream("aAbBABacfe"));
+		String palvra = "aAbBABacfe";
+		char first = SolutionApp.firstChar(new StreamImpl(palvra));
 		Assert.assertEquals('e', first);
 	}
 
 	@Test
 	public void testFirstChar02() {
-		char first = SolutionApp.firstChar(createStream("Gato"));
-		Assert.assertEquals('o', first);
+		String palavra = "Gato";
+		char first = SolutionApp.firstChar(new StreamImpl(palavra));
+		Assert.assertEquals('a', first);
 	}
 
 	@Test
 	public void testFirstChar03() {
-		char first = SolutionApp.firstChar(createStream("Matheus"));
+		String palavra = "Matheus";
+		char first = SolutionApp.firstChar(new StreamImpl(palavra));
 		Assert.assertEquals('a', first);
 	}
 
 	@Test
 	public void testFirstCharVogalNaoEncontrada() {
 		try {
-			SolutionApp.firstChar(createStream("arnaud"));			
+			String palavra = "arnaud";
+			SolutionApp.firstChar(new StreamImpl(palavra));			
 			Assert.fail();
 			
 		} catch (IllegalArgumentException e) {
 			Assert.assertEquals(VOGAL_NAO_ENCONTRADA, e.getMessage());
 		}
 	}
-
-	public StreamImpl createStream(String palavra) {
-		Scanner scanner = new Scanner(palavra);
-		return new StreamImpl(scanner);		
-	}
-
 }

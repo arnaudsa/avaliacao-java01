@@ -2,8 +2,6 @@ package br.com.avaliacao.checkout;
 
 import static br.com.avaliacao.checkout.constants.Constants.FINAL_DE_LINHA;
 
-import java.util.Scanner;
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,8 +14,7 @@ public class StreamTest {
 	
 	@Before
 	public void before() {
-		Scanner scanner = new Scanner(palavra);
-		stream = new StreamImpl(scanner);		
+		stream = new StreamImpl(palavra);		
 	}
 	
 	@Test

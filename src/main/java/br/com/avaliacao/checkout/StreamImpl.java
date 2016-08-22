@@ -2,17 +2,20 @@ package br.com.avaliacao.checkout;
 
 import static br.com.avaliacao.checkout.constants.Constants.FINAL_DE_LINHA;
 
-import java.util.Scanner;
-
 public class StreamImpl implements Stream {
 
-	private String input;
-	private int size;
+	private final String input;
+	private final int size;
 	private int currentIndex;
 	
-	public StreamImpl(Scanner scanner) {
+	public StreamImpl(String input) {
 		super();
-		this.input = scanner.nextLine().trim();
+		
+		if (input == null) {
+			input = "";
+		}
+		
+		this.input = input;			
 		this.size  = input.length();
 	}
 
