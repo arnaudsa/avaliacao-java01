@@ -1,7 +1,9 @@
 package br.com.avaliacao.checkout;
 
+import static br.com.avaliacao.checkout.constants.Constants.VOGAL_NAO_ENCONTRADA;
+
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -10,50 +12,54 @@ import java.util.regex.Pattern;
 
 public class SolutionApp {
 	
-	private static boolean isPreviousConsoante;
-	
-	private static Map<Character, Integer> map = new HashMap<>();
-	private static List<Character> listVogais = new ArrayList<>();
+	private static Map<Character, Integer> mapCountCharacter = new LinkedHashMap<>();
+	private static List<Character> characters = new ArrayList<>();
+	private static List<Character> vogais = new ArrayList<>();
 	
 	public static char firstChar(Stream stream) {
 				
 		while (stream.hasNext()) {									
 			
-			char character = stream.getNext();
-			if (isConsoante(character)) {
-				isPreviousConsoante = true;				
+			char charCurrent = stream.getNext();			
 			
-			}else if (isVogal(character) && isPreviousConsoante) {				
-				listVogais.add(character);				
+			if (characters.size() > 1) {								
+				char charPrevious = characters.get(characters.size()-1);
+				boolean charPreviousIsConsoante = isConsoante(charPrevious);
+				
+				
+				boolean currentIsVogal = isVogal(charCurrent);
+				if (charPreviousIsConsoante && currentIsVogal) {
+					vogais.add(charCurrent);									
+				}
 			}
 			
-			saveCharacter(character);
+			characters.add(charCurrent);			
+			saveCharacter(charCurrent);
 		}
 		
-		return getVogal();
-		
+		return getVogal();	
 	}
-
+	
 	private static Character getVogal() {
-		if (!listVogais.isEmpty()) {									
-			for (Character key : listVogais) {
-				Integer integer = map.get(key);
+		if (!vogais.isEmpty()) {									
+			for (Character key : vogais) {
+				Integer integer = mapCountCharacter.get(key);
 				if (integer == 1) {
 					return key;
 				}				
 			}
 		}
-		throw new IllegalArgumentException("Vogal não encontrada.");			
+		throw new IllegalArgumentException(VOGAL_NAO_ENCONTRADA);			
 	}
 	
-	private static void saveCharacter(Character character) {
-		Integer qtd = map.get(character);
-		if (qtd == null) {
-			map.put(character, 1);					
-			
+	private static void saveCharacter(Character character) {		
+		if (mapCountCharacter.containsKey(character)) {
+			Integer qtd = mapCountCharacter.get(character);
+			mapCountCharacter.put(character, ++qtd);			
+		
 		}else{
-			map.put(character, ++qtd);
-		}				
+			mapCountCharacter.put(character, 1);								
+		}		
 	}
 	
 	private static boolean isVogal(char character) {
@@ -81,8 +87,15 @@ public class SolutionApp {
 		System.out.print("Digite uma palavra: ");
 		Stream stream = new StreamImpl(new Scanner(System.in));
 		
-		char firstChar = firstChar(stream);
-		System.out.println(firstChar);
+		try {
+			char firstChar = firstChar(stream);
+			System.out.print("Resposta: ");
+			System.out.print(firstChar);
+			
+		} catch (IllegalArgumentException e) {
+			System.out.print("Resposta: ");
+			System.out.print(e.getMessage());
+		}
 	}
 
 }

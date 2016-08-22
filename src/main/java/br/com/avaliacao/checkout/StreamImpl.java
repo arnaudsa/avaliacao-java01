@@ -1,5 +1,7 @@
 package br.com.avaliacao.checkout;
 
+import static br.com.avaliacao.checkout.constants.Constants.FINAL_DE_LINHA;
+
 import java.util.Scanner;
 
 public class StreamImpl implements Stream {
@@ -16,7 +18,7 @@ public class StreamImpl implements Stream {
 
 	@Override
 	public char getNext() {
-		char character = '\0';
+		char character = FINAL_DE_LINHA;
 		if (hasNext()) {
 			character = input.charAt(currentIndex++);					
 		}
