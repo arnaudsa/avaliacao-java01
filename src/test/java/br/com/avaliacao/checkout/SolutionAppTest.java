@@ -5,6 +5,8 @@ import static br.com.avaliacao.checkout.constants.Constants.VOGAL_NAO_ENCONTRADA
 import org.junit.Assert;
 import org.junit.Test;
 
+import br.com.avaliacao.checkout.app.SolutionApp;
+
 
 
 public class SolutionAppTest {

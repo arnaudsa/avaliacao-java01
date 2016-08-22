@@ -1,4 +1,4 @@
-package br.com.avaliacao.checkout;
+package br.com.avaliacao.checkout.app;
 
 import static br.com.avaliacao.checkout.constants.Constants.VOGAL_NAO_ENCONTRADA;
 
@@ -9,6 +9,9 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import br.com.avaliacao.checkout.Stream;
+import br.com.avaliacao.checkout.StreamImpl;
 
 public class SolutionApp {
 	
