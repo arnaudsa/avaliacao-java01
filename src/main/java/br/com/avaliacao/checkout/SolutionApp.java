@@ -22,7 +22,7 @@ public class SolutionApp {
 			
 			char charCurrent = stream.getNext();			
 			
-			if (characters.size() > 1) {								
+			if (characters.size() >= 1) {								
 				char charPrevious = characters.get(characters.size()-1);
 				boolean charPreviousIsConsoante = isConsoante(charPrevious);
 				

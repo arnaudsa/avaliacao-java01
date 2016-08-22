@@ -12,9 +12,21 @@ import org.junit.Test;
 public class SolutionAppTest {
 		
 	@Test
-	public void testFirstChar() {
+	public void testFirstChar01() {
 		char first = SolutionApp.firstChar(createStream("aAbBABacfe"));
 		Assert.assertEquals('e', first);
+	}
+
+	@Test
+	public void testFirstChar02() {
+		char first = SolutionApp.firstChar(createStream("Gato"));
+		Assert.assertEquals('o', first);
+	}
+
+	@Test
+	public void testFirstChar03() {
+		char first = SolutionApp.firstChar(createStream("Matheus"));
+		Assert.assertEquals('a', first);
 	}
 
 	@Test
